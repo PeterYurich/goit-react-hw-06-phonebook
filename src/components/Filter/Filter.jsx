@@ -5,14 +5,11 @@ import { useDispatch } from 'react-redux';
 import css from '../../components/styles.module.scss';
 
 const Filter = () => {
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-
-    console.log(setFilter)
-    
-    const onChange = (evt) => {
-        dispatch(setFilter(evt.target.value))
-    }
+  const onChange = evt => {
+    dispatch(setFilter(evt.target.value));
+  };
 
   return (
     <label className={css.label}>
