@@ -1,9 +1,13 @@
 {
-  "name": "react-homework-template",
+  "name": "hw-peteryurich",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://marynapyvovar.github.io/goit-react-hw-06-phonebook/",
+  "homepage": "https://peteryurich.github.io/goit-react-hw-06-phonebook/",
   "dependencies": {
+    "@emotion/styled": "^11.10.4",   
+    "axios": "^1.1.2",
+    "react-router-dom": "^6.4.2",
+    "sass": "^1.54.9",
     "@redux-devtools/extension": "^3.2.3",
     "@reduxjs/toolkit": "^1.8.6",
     "@testing-library/jest-dom": "^5.16.3",
