@@ -1,16 +1,28 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/selectors';
+import { getContacts, getFilter } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
+import { deleteContact } from 'redux/contactsSlice';
 
 import css from 'components/styles.module.scss';
 
-const ContactList = ({ deleteContact }) => {
+const ContactList = () => {
+  const dispatch = useDispatch();
 
-  const toRender = useSelector(getContacts)
+  const contacts = useSelector(getContacts);
+  const filter = useSelector(getFilter);
 
-  
+  const filteredContacts = contacts.filter(person => 
+    person.name.toLowerCase().includes(filter.toLowerCase()));
+
+  let toRender = filteredContacts || contacts;
+
+  if (filteredContacts.length === 0) {
+    alert(`Nothing found by filter "${filter}"`)
+    toRender = contacts;
+  }
+
   return (
     <ul>
       {toRender.map(person => {
@@ -22,7 +34,7 @@ const ContactList = ({ deleteContact }) => {
             <button
               className={css.deleteBtn}
               onClick={() => {
-                deleteContact(person.id);
+                dispatch(deleteContact(person.id));
               }}
             >
               Delete
@@ -32,17 +44,6 @@ const ContactList = ({ deleteContact }) => {
       })}
     </ul>
   );
-};
-
-ContactList.propTypes = {
-  toRender: PropTypes.arrayOf(
-    PropTypes.exact({
-      name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-    })
-  ),
-  deleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;
