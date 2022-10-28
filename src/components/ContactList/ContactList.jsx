@@ -18,10 +18,6 @@ const ContactList = () => {
 
   let toRender = filteredContacts || contacts;
 
-  // if (filteredContacts.length === 0 && filter !== '') {
-  //   toRender = contacts;
-  // }
-
   return (
     <ul>
       {toRender.map(person => {
